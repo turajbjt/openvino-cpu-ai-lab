@@ -4,6 +4,7 @@ services:
     image: openvino-cpu-ai-lab:latest
     container_name: openvino-ai-lab
     volumes:
+      - .:/app:Z  # The :Z is crucial here
       # Mount local code for live editing
       - ./lab:/app/lab
       # Mount local models folder to save space/persist models

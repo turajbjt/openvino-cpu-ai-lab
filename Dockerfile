@@ -1,30 +1,33 @@
-# Use official OpenVINO Ubuntu 22.04 base image
-FROM openvino/ubuntu22_dev:2024.0.0
+# --- STAGE 1: BUILDER ---
+FROM docker.io/openvino/ubuntu22_dev:2024.0.0 AS builder
 
-# Set user to root for installation
 USER root
+WORKDIR /build
 
-# Install basic development utilities
+# Added libncurses for terminal-related python builds
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    curl \
-    vim \
-    python3-pip \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    git curl gcc g++ python3-dev libncurses5-dev && \
+    rm -rf /var/lib/apt/lists/*
 
-# Set working directory inside the container
+COPY requirements.txt .
+
+# Install as a normal user to /install
+RUN pip3 install --no-cache-dir --upgrade pip && \
+    pip3 install --no-cache-dir --prefix=/install -r requirements.txt
+
+# --- STAGE 2: RUNTIME ---
+FROM docker.io/openvino/ubuntu22_runtime:2024.0.0
+
+USER root
 WORKDIR /app
 
-# Copy requirements and install
-COPY requirements.txt .
-RUN pip3 install --no-cache-dir --upgrade pip && \
-    pip3 install --no-cache-dir -r requirements.txt
+# Copy the installed packages from the builder prefix
+COPY --from=builder /install /usr/local
+COPY . .
 
-# Create necessary directories
-RUN mkdir -p /app/models /app/lab
+# Fedora 43 / SELinux safety: ensure permissions are open for the app
+RUN chmod -R 755 /app
 
-# Set environmental variable to prioritize CPU during optimization
-ENV OV_FRONTEND_PREFER_CPU=1
-
-# By default, drop into a bash shell
-CMD ["/bin/bash"]
+WORKDIR /app
+COPY . .
+CMD ["python3", "main.py"]
