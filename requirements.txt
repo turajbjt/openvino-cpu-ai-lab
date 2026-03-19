@@ -7,7 +7,7 @@ optimum-intel[nncf,openvino]>=1.15.0
 
 # Supporting ML stack
 transformers>=4.38.2,<4.40.0
-torch==2.2.1
+torch==2.8.0
 nncf>=2.9.0
 onnx==1.15.0
 
