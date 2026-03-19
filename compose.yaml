@@ -1,0 +1,16 @@
+services:
+  ai-lab:
+    build: .
+    image: openvino-cpu-ai-lab:latest
+    container_name: openvino-ai-lab
+    volumes:
+      # Mount local code for live editing
+      - ./lab:/app/lab
+      # Mount local models folder to save space/persist models
+      - ./models:/app/models
+    # Provide access to system information for OpenVINO tuning
+    security_opt:
+      - seccomp:unconfined
+    network_mode: host # Allows easy access to local network if you start APIs
+    stdin_open: true # allows interactive terminal (docker attach)
+    tty: true        # allows interactive terminal

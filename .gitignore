@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+
+# Docker
+.DS_Store
+
+# Models - DO NOT COMMIT MODELS TO GITHUB
+models/*
+!models/.gitkeep
