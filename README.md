@@ -84,6 +84,11 @@ python benchmark_model.py --model models/resnet50.xml --threads 4 --streams 2
 python auto_benchmark.py --models_dir models --sample data/sample.jpg --threads 4 --streams 2
 ```
 
+* --models_dir → Folder containing OpenVINO IR models (.xml)
+* --sample → Path to an image or video file for benchmarking
+* --threads → Number of CPU threads to use
+* --streams → Number of CPU throughput streams
+
 Sample Output:
 
 ``=== CPU Benchmark Results (ms per inference) ===
@@ -102,6 +107,7 @@ openvino-cpu-ai-lab/
 * run_inference.py        # Image inference with top-5 predictions
 * run_video_inference.py  # Video/webcam inference with FPS & top-5
 * /benchmark_model.py     # CPU benchmarking
+* /auto_benchmark.py      # Automatic benchmarking
 * /app.py                 # Optional Flask web interface
 * /requirements.txt
 * /README.md
