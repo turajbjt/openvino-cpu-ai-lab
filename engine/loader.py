@@ -60,4 +60,4 @@ Use the context to answer the question.
         if "### Answer:" in decoded:
             return decoded.split("### Answer:")[-1].strip()
 
-        return decoded.strip()e
+        return decoded.strip()
