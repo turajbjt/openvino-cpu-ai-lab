@@ -1,5 +1,5 @@
 # Core OpenVINO CPU inference
-openvino==2026.1.0
+openvino>=2023.3
 
 # Scientific & image processing
 numpy>=1.23.0
@@ -13,7 +13,7 @@ onnx>=1.17.0
 onnxruntime>=1.16.0
 
 # Web interface (optional)
-flask>=2.4.0
+flask>=2.3.0
 python-dotenv>=1.0.0
 
 # HTTP requests (if needed for model downloading)
