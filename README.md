@@ -112,7 +112,7 @@ mobilenet.xml: 12.67 ms
 resnet50.xml: 23.45 ms
 yolov8.xml: 45.32 ms
 ssd.xml: 50.10 ms
-```
+``
 
 * Results are sorted by fastest inference
 * Works with images or video frames
