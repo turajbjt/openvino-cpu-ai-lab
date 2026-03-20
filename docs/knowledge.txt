@@ -1,0 +1,2 @@
+OpenVINO is an open-source toolkit for optimizing and deploying AI inference on Intel hardware.
+It supports CPU, GPU, and VPU backends.
