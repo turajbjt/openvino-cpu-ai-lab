@@ -41,7 +41,7 @@ flask run
 
 **Usage**
 
-* Image Inference:
+1. Image Inference:
 
 ```bash
 python run_inference.py --model models/resnet50.xml --input data/sample.jpg --threads 4 --streams 1
@@ -58,7 +58,7 @@ Top-5 predictions:
   Class 66: 0.02
 ``
 
-* Video/Webcam Inference:
+2. Video/Webcam Inference:
 
 ```bash
 python run_video_inference.py --model models/yolov8.xml --source 0 --threads 4 --streams 2
@@ -69,7 +69,7 @@ python run_video_inference.py --model models/yolov8.xml --source 0 --threads 4 -
 * FPS and Top-5 predictions are displayed live on the video window
 * Press q to quit
 
-* Benchmark CPU Performance:
+3. Benchmark CPU Performance:
 
 ```bash
 python benchmark_model.py --model models/resnet50.xml --threads 4 --streams 2
@@ -77,6 +77,21 @@ python benchmark_model.py --model models/resnet50.xml --threads 4 --streams 2
 
 * Measures CPU inference time
 * Allows configurable threading and throughput streams
+
+4. Auto Benchmark
+
+```bash
+python auto_benchmark.py --models_dir models --sample data/sample.jpg --threads 4 --streams 2
+```
+
+Sample Output:
+
+``=== CPU Benchmark Results (ms per inference) ===
+resnet50.xml: 23.45 ms
+mobilenet.xml: 12.67 ms
+yolov8.xml: 45.32 ms
+ssd.xml: 50.10 ms
+``
 
 **Project Structure**
 
